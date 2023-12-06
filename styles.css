@@ -1,5 +1,5 @@
 form {
-    max-width: 400px;
+    max-width:400px;
     margin: 0 auto;
     padding: 20px;
     border: 1px solid #ccc;
@@ -9,7 +9,7 @@ form {
 
 label {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 16px;
 }
 
 input,
