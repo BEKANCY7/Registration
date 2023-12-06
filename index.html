@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Registration Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <form action="process_registration.php" method="post">
+        First Name: <input type="text" name="FirstName" required><br>
+        Middle Name: <input type="text" name="MiddleName" required><br>
+        Last Name: <input type="text" name="LastName" required><br>
+        Gender: 
+        <select name="Gender" required>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select><br>
+        Date of Birth: <input type="date" name="DateOfBirth" required><br>
+        Grade: <input type="text" name="Grade" required><br>
+        School Name: 
+        <select name="SchoolName" required>
+            <option value="Bole School">Bole School</option>
+            <option value="Lideta School">Lideta School</option>
+            <option value="Menilik School">Menilik School</option>
+            <option value="Akaki School">Akaki School</option>
+            <option value="Arada School">Arada School</option>
+        </select><br>
+        <input type="submit" value="Register">
+    </form>
+    
+</body>
+</html>
+
+    
