@@ -3,21 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Registration Form</title>
+    <title>Student Registration Form</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <form action="Reg.php" method="post">
+    <div class="container">
+        <h1>Student Registration Form</h1>
+    </div>
+      <form action="Reg.php" method="post">
         First Name: <input type="text" name="FirstName" required><br>
-        Middle Name: <input type="text" name="MiddleName" required><br>
         Last Name: <input type="text" name="LastName" required><br>
-        Email: <input type="email" name="Email" required><br>
-        Phone Number: <input type="tel" name="PhoneNumber" required><br>
-        Address: <textarea name="Address" rows="4" required></textarea><br>
-        Profile Picture: <input type="file" name="ProfilePicture"><br>
-        <input type="hidden" name="RegistrationDateTime" value="<?php echo date('Y-m-d H:i:s'); ?>">
-        <input type="reset" value="Reset">
-
         Gender: 
         <select name="Gender" required>
             <option value="Male">Male</option>
