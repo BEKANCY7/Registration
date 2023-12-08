@@ -1,24 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Student Information</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+<?php
+$hostname = 'localhost';
+$username = 'root';
+$password = '';
+$database = 'registrationform';
+$port = 3306;
+$conn = new mysqli($hostname, $username, $password, $database, $port);
 
-    <h2>Edit Student Information</h2>
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
-    <?php
-    if (isset($studentID)) {
-        // Fetch student information based on ID and pre-fill the form
-        $query = "SELECT * FROM Students WHERE StudentID = $studentID";
-        $result = $conn->query($query);
+// Check if StudentID is provided in the URL
+if (isset($_GET['StudentID'])) {
+    $studentID = $_GET['StudentID'];
 
-        if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-    ?>
+    // Fetch student information based on ID and pre-fill the form
+    $query = "SELECT * FROM Students WHERE StudentID = $studentID";
+    $result = $conn->query($query);
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+?>
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Edit Student Information</title>
+            <link rel="stylesheet" href="styles.css">
+        </head>
+        <body>
+
+            <h2>Edit Student Information</h2>
+
             <form action="update_student.php" method="post">
                 <!-- Add your input fields here with pre-filled values from $row -->
                 First Name: <input type="text" name="FirstName" value="<?= $row['FirstName'] ?>" required><br>
@@ -31,14 +45,16 @@
                 <input type="hidden" name="StudentID" value="<?= $row['StudentID'] ?>">
                 <input type="submit" name="submit" value="Update">
             </form>
-    <?php
-        } else {
-            echo "No student found with the provided ID for editing.";
-        }
-    } else {
-        echo "Student ID not provided for editing.";
-    }
-    ?>
 
-</body>
-</html>
+        </body>
+        </html>
+<?php
+    } else {
+        echo "No student found with the provided ID for editing.";
+    }
+} else {
+    echo "Student ID not provided for editing.";
+}
+
+$conn->close();
+?>

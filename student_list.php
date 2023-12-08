@@ -110,14 +110,14 @@
                         <td>' . $row['Grade'] . '</td>
                         <td>' . $row['SchoolName'] . '</td>
                         <td>
-                            <a href="#" class="action-btn edit-btn" title="Edit">
+                            <a href="edit_form.php?StudentID=' . $row['StudentID'] . '" class="action-btn edit-btn" title="Edit">
                                 <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="delete_student.php?id=' . $row['StudentID'] . '" class="action-btn delete-btn" title="Delete">
+                                <i class="fas fa-trash-alt"></i>
                             </a>
                             <a href="#" class="action-btn view-btn" title="View">
                                 <i class="fas fa-eye"></i>
-                            </a>
-                            <a href="#" class="action-btn delete-btn" title="Delete">
-                                <i class="fas fa-trash-alt"></i>
                             </a>
                         </td>
                     </tr>';
