@@ -120,7 +120,7 @@
     <i class="fas fa-eye"></i>
 </a>
 
-                        </td>
+</td>
                     </tr>';
             }
         } else {
