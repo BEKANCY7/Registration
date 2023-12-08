@@ -116,9 +116,10 @@
                             <a href="delete_student.php?id=' . $row['StudentID'] . '" class="action-btn delete-btn" title="Delete">
                                 <i class="fas fa-trash-alt"></i>
                             </a>
-                            <a href="#" class="action-btn view-btn" title="View">
-                                <i class="fas fa-eye"></i>
-                            </a>
+                            <a href="view_student.php?id=' . $row['StudentID'] . '" class="action-btn view-btn" title="View">
+    <i class="fas fa-eye"></i>
+</a>
+
                         </td>
                     </tr>';
             }
