@@ -117,7 +117,7 @@
                                 <i class="fas fa-trash-alt"></i>
                             </a>
                             <a href="view_student.php?id=' . $row['StudentID'] . '" class="action-btn view-btn" title="View">
-    <i class="fas fa-eye"></i>
+                                <i class="fas fa-eye"></i>
 </a>
 
 </td>

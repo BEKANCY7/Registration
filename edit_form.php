@@ -33,10 +33,66 @@ if (isset($_GET['StudentID'])) {
 
             <h2>Edit Student Information</h2>
 
-            <form action="update_student.php" method="post">
-                <!-- Add your input fields here with pre-filled values from $row -->
-                First Name: <input type="text" name="FirstName" value="<?= $row['FirstName'] ?>" required><br>
-                Last Name: <input type="text" name="LastName" value="<?= $row['LastName'] ?>" required><br>
+            <?php
+            // Display error messages if any
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $errors = array();
+
+                // Validate and sanitize user inputs
+                $firstName = cleanInput($_POST["FirstName"]);
+                $lastName = cleanInput($_POST["LastName"]);
+                $gender = cleanInput($_POST["Gender"]);
+                $dateOfBirth = cleanInput($_POST["DateOfBirth"]);
+                $grade = cleanInput($_POST["Grade"]);
+                $schoolName = cleanInput($_POST["SchoolName"]);
+
+                // Validation for First Name: Only letters are allowed and should start with a capital letter
+                if (!preg_match("/^[A-Z][a-z]*$/", $firstName)) {
+                    $errors[] = "First Name should start with a capital letter and only contain letters.";
+                }
+
+                // Validation for Last Name: Only letters are allowed and should start with a capital letter
+                if (!preg_match("/^[A-Z][a-z]*$/", $lastName)) {
+                    $errors[] = "Last Name should start with a capital letter and only contain letters.";
+                }
+
+                // Validation for Date of Birth: It should not be in the future
+                if (strtotime($dateOfBirth) > time()) {
+                    $errors[] = "Date of Birth cannot be in the future.";
+                }
+
+                // Add more validation checks as needed
+
+                // If no errors, update the student information
+                if (empty($errors)) {
+                    // Update the student information in the database
+                    $updateQuery = "UPDATE Students SET
+                        FirstName = '$firstName',
+                        LastName = '$lastName',
+                        Gender = '$gender',
+                        DateOfBirth = '$dateOfBirth',
+                        Grade = '$grade',
+                        SchoolName = '$schoolName'
+                        WHERE StudentID = $studentID";
+
+                    if ($conn->query($updateQuery) === TRUE) {
+                        echo "Student information updated successfully";
+                    } else {
+                        echo "Error updating student information: " . $conn->error;
+                    }
+                } else {
+                    // Display validation errors
+                    foreach ($errors as $error) {
+                        echo "<p style='color: red;'>$error</p>";
+                    }
+                }
+            }
+            ?>
+
+            <!-- Display the student information editing form -->
+            <form action="" method="post">
+                First Name: <input type="text" name="FirstName" pattern="[A-Za-z]+" title="First Name should start with a capital letter and only contain letters." value="<?= $row['FirstName'] ?>" required><br>
+                Last Name: <input type="text" name="LastName" pattern="[A-Za-z]+" title="Last Name should start with a capital letter and only contain letters." value="<?= $row['LastName'] ?>" required><br>
                 Gender: <input type="text" name="Gender" value="<?= $row['Gender'] ?>" required><br>
                 Date of Birth: <input type="date" name="DateOfBirth" value="<?= $row['DateOfBirth'] ?>" required><br>
                 Grade: <input type="text" name="Grade" value="<?= $row['Grade'] ?>" required><br>
@@ -57,4 +113,12 @@ if (isset($_GET['StudentID'])) {
 }
 
 $conn->close();
+
+// Function to sanitize and validate input
+function cleanInput($input) {
+    $input = trim($input);
+    $input = stripslashes($input);
+    $input = htmlspecialchars($input);
+    return $input;
+}
 ?>

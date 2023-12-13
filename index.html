@@ -5,19 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Registration Form</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
     <div class="container">
         <h1>Student Registration Form</h1>
     </div>
-      <form action="Reg.php" method="post">
+    <form action="Reg.php" method="post" onsubmit="return validateForm()">
         First Name: <input type="text" name="FirstName" required><br>
         Last Name: <input type="text" name="LastName" required><br>
         Gender: 
-        <select name="Gender" required>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-        </select><br>
+        <input type="radio" name="Gender" value="Male" required> Male
+        <input type="radio" name="Gender" value="Female" required> Female<br>
         Date of Birth: <input type="date" name="DateOfBirth" required><br>
         Grade: <input type="text" name="Grade" required><br>
         School Name: 
@@ -29,7 +28,6 @@
             <option value="Arada School">Arada School</option>
         </select><br>
         <input type="submit" name="submit" value="Register">
-    </form>  
-    
+    </form>
 </body>
 </html>

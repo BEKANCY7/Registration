@@ -1,4 +1,3 @@
-<!-- view_student.php -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Student Information</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Include font-awesome library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
@@ -43,6 +44,11 @@
             echo '<p><strong>Date of Birth:</strong> ' . $row['DateOfBirth'] . '</p>';
             echo '<p><strong>Grade:</strong> ' . $row['Grade'] . '</p>';
             echo '<p><strong>School Name:</strong> ' . $row['SchoolName'] . '</p>';
+
+            // Add "Edit" and "Delete" options with icons
+            echo '<br><br>';
+            echo '<a href="edit_student.php?id=' . $studentID . '" class="action-btn" title="Edit"><i class="fas fa-edit"></i> Edit</a>';
+            echo '<a href="delete_student.php?id=' . $studentID . '" class="action-btn" title="Delete"><i class="fas fa-trash-alt"></i> Delete</a>';
         } else {
             echo "No student found with the provided ID.";
         }
