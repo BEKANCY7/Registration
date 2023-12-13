@@ -47,7 +47,7 @@
 
             // Add "Edit" and "Delete" options with icons
             echo '<br><br>';
-            echo '<a href="edit_student.php?id=' . $studentID . '" class="action-btn" title="Edit"><i class="fas fa-edit"></i> Edit</a>';
+            echo '<a href="edit_form.php?StudentID=' . $studentID . '" class="action-btn" title="Edit"><i class="fas fa-edit"></i> Edit</a>';
             echo '<a href="delete_student.php?id=' . $studentID . '" class="action-btn" title="Delete"><i class="fas fa-trash-alt"></i> Delete</a>';
         } else {
             echo "No student found with the provided ID.";
@@ -58,6 +58,6 @@
         echo "Student ID not provided.";
     }
     ?>
-
+     
 </body>
 </html>
