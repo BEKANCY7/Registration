@@ -96,7 +96,14 @@ if (isset($_GET['StudentID'])) {
                 Gender: <input type="text" name="Gender" value="<?= $row['Gender'] ?>" required><br>
                 Date of Birth: <input type="date" name="DateOfBirth" value="<?= $row['DateOfBirth'] ?>" required><br>
                 Grade: <input type="text" name="Grade" value="<?= $row['Grade'] ?>" required><br>
-                School Name: <input type="text" name="SchoolName" value="<?= $row['SchoolName'] ?>" required><br>
+                School Name: 
+                <select name="SchoolName" required>
+            <option value="Bole School">Bole School</option>
+            <option value="Lideta School">Lideta School</option>
+            <option value="Menilik School">Menilik School</option>
+            <option value="Akaki School">Akaki School</option>
+            <option value="Arada School">Arada School</option>
+        </select><br>
                 <!-- Add hidden input for StudentID to identify the student being edited -->
                 <input type="hidden" name="StudentID" value="<?= $row['StudentID'] ?>">
                 <input type="submit" name="submit" value="Update">
