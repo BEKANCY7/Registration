@@ -1,66 +1,143 @@
-<?php
-$hostname = 'localhost';
-$username = 'root';
-$password = '';
-$database = 'registrationform';
-$port = 3306;
-$conn = new mysqli($hostname, $username, $password, $database, $port);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// Query to retrieve student information
-$query = "SELECT * FROM Students";
-$result = $conn->query($query);
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Information List</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f2f2f2;
+            padding: 20px;
+            text-align: center;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        .action-btn {
+            display: inline-block;
+            margin: 5px;
+            padding: 8px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .edit-btn {
+            background-color: #28a745;
+        }
+
+        .view-btn {
+            background-color: #17a2b8;
+        }
+
+        .delete-btn {
+            background-color: #dc3545;
+        }
+
+        .search-container {
+            margin-bottom: 20px;
+        }
+
+        .search-container input,
+        .search-container select {
+            padding: 8px;
+        }
+
+        #paging-info {
+            margin-top: 10px;
+        }
+
+        #prev-btn, #next-btn {
+            margin: 5px;
+            padding: 8px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        #prev-btn[disabled], #next-btn[disabled] {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
 </head>
 <body>
 
     <h2>Student Information List</h2>
 
-    <?php
-    if ($result->num_rows > 0) {
-        // Output data in a table
-        echo '<table border="1">
-                <tr>
-                    <th>StudentID</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Gender</th>
-                    <th>Date of Birth</th>
-                    <th>Grade</th>
-                    <th>School Name</th>
-                </tr>';
+    <!-- Add a dropdown for school names -->
+    <div class="search-container">
+        <label for="school">School:</label>
+        <select id="school" onchange="filterStudents()">
+            <option value="">All Schools</option>
+            <!-- PHP code to populate the dropdown with unique school names -->
+            <?php
+                $uniqueSchools = array_unique(array_column($students, 'SchoolName'));
+                foreach ($uniqueSchools as $school) {
+                    echo "<option value=\"$school\">$school</option>";
+                }
+            ?>
+        </select>
+        <select id="school" onchange="filterStudents()">
+        <label for="search">Search:</label>
+        <input type="text" id="search" oninput="filterStudents()" placeholder="Search by Name or ID">
+    </div>
 
-        while ($row = $result->fetch_assoc()) {
-            echo '<tr>
-                    <td>' . $row['StudentID'] . '</td>
-                    <td>' . $row['FirstName'] . '</td>
-                    <td>' . $row['LastName'] . '</td>
-                    <td>' . $row['Gender'] . '</td>
-                    <td>' . $row['DateOfBirth'] . '</td>
-                    <td>' . $row['Grade'] . '</td>
-                    <td>' . $row['SchoolName'] . '</td>
-                </tr>';
-        }
+    <table id="student-table">
+        <thead>
+            <tr>
+                <th>StudentID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Gender</th>
+                <th>Date of Birth</th>
+                <th>Grade</th>
+                <th>School Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="student-table-body">
+            <!-- Student data will be dynamically added here -->
+        </tbody>
+    </table>
 
-        echo '</table>';
-    } else {
-        echo "No records found.";
-    }
+    <div id="paging-info"></div>
+    <button id="prev-btn" onclick="goToPrevPage()" disabled>Previous Page</button>
+    <button id="next-btn" onclick="goToNextPage()" disabled>Next Page</button>
 
-    $conn->close();
-    ?>
+    <script src="script.js"></script>
+    <script src="list.js"></script>
 
 </body>
 </html>

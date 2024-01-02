@@ -4,17 +4,15 @@ function validateForm() {
     var dateOfBirth = document.getElementsByName("DateOfBirth")[0].value;
     var grade = document.getElementsByName("Grade")[0].value;
 
-   
-
     // Validate date of birth
     if (!dateOfBirth) {
-        displayAlert("Error: Date of Birth is required.");
+        showAlert("Error: Date of Birth is required.");
         return false; // Stop form submission
     }
 
     // Validate grade
     if (!grade) {
-        displayAlert("Error: Grade is required.");
+        showAlert("Error: Grade is required.");
         return false; // Stop form submission
     }
 
@@ -26,3 +24,19 @@ function validateForm() {
 function displayAlert(message) {
     alert(message);
 }
+
+function filterStudents() {
+    let searchInput = document.getElementById('search').value.toLowerCase();
+    let selectedSchool = document.getElementById('school').value.toLowerCase();
+
+    let filteredStudents = allStudents.filter(student =>
+        (selectedSchool === '' || student.SchoolName.toLowerCase() === selectedSchool) &&
+        (student.FirstName.toLowerCase().includes(searchInput) ||
+        student.LastName.toLowerCase().includes(searchInput) ||
+        student.StudentID.includes(searchInput))
+    );
+
+    displayStudents(filteredStudents, currentPage);
+}
+
+// ... Your existing code ...

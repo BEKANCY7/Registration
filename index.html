@@ -14,9 +14,15 @@
     <form action="Reg.php" method="post" onsubmit="return validateForm()">
         First Name: <input type="text" name="FirstName" required><br>
         Last Name: <input type="text" name="LastName" required><br>
-        Gender: 
-        <input type="radio" name="Gender" value="Male" required> Male
-        <input type="radio" name="Gender" value="Female" required> Female<br>
+       <!-- Add a container div for the radio buttons -->
+<div class="gender-container">
+    <label class="gender-label">Gender:</label>
+    <input type="radio" name="Gender" value="Male" id="male" required>
+    <label for="male">Male</label>
+    <input type="radio" name="Gender" value="Female" id="female" required>
+    <label for="female">Female</label>
+</div>
+
         Date of Birth: <input type="date" name="DateOfBirth" required><br>
         Grade: <input type="text" name="Grade" required><br>
         School Name: 

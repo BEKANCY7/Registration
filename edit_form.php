@@ -93,7 +93,8 @@ if (isset($_GET['StudentID'])) {
             <form action="" method="post">
                 First Name: <input type="text" name="FirstName" pattern="[A-Za-z]+" title="First Name should start with a capital letter and only contain letters." value="<?= $row['FirstName'] ?>" required><br>
                 Last Name: <input type="text" name="LastName" pattern="[A-Za-z]+" title="Last Name should start with a capital letter and only contain letters." value="<?= $row['LastName'] ?>" required><br>
-                Gender: <input type="text" name="Gender" value="<?= $row['Gender'] ?>" required><br>
+                Gender: <input type="radio" name="Gender" value="Male" required> Male
+                        <input type="radio" name="Gender" value="Female" required> Female
                 Date of Birth: <input type="date" name="DateOfBirth" value="<?= $row['DateOfBirth'] ?>" required><br>
                 Grade: <input type="text" name="Grade" value="<?= $row['Grade'] ?>" required><br>
                 School Name: 
