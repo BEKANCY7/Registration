@@ -25,18 +25,5 @@ function displayAlert(message) {
     alert(message);
 }
 
-function filterStudents() {
-    let searchInput = document.getElementById('search').value.toLowerCase();
-    let selectedSchool = document.getElementById('school').value.toLowerCase();
 
-    let filteredStudents = allStudents.filter(student =>
-        (selectedSchool === '' || student.SchoolName.toLowerCase() === selectedSchool) &&
-        (student.FirstName.toLowerCase().includes(searchInput) ||
-        student.LastName.toLowerCase().includes(searchInput) ||
-        student.StudentID.includes(searchInput))
-    );
 
-    displayStudents(filteredStudents, currentPage);
-}
-
-// ... Your existing code ...

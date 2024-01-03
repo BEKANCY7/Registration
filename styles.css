@@ -10,7 +10,7 @@ body {
 }
 
 .container {
-    max-width: 400px;
+    max-width: 1000px;
     margin-top: 20px;
     margin-bottom: 20px; /* Adjust the margin-bottom as needed */
     padding: 20px;
@@ -23,24 +23,52 @@ h1 {
     text-align: center;
 }
 
-.registration-form {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    max-width: 200px;
-    padding: 12px;
-    border-radius: 10px;
-    position: center;
-    background-color: #36a5e5;
-    color: #b96565;
-    border: 1px solid #1f5ba5;
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
 }
 
-.flex {
-    display: flex;
-    width: 90%;
-    gap: 6px;
+label {
+    display: block;
+    margin-bottom: 8px;
 }
+
+input,
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill="%23333" d="M2 2l6 6 6-6"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 8px top 50%;
+}
+
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
 
 .gender-container {
     display: flex;
