@@ -123,22 +123,30 @@ $conn->close();
 
     <h2>Student Information List</h2>
      <!-- Add a dropdown for school names -->
-     <div class="search-container">
-        <label for="school">School:</label>
-        <select id="school" onchange="filterStudents()">
-            <option value="">All Schools</option>
-            <?php
-                // Assuming $students is an array containing your student data
-                $uniqueSchools = array_unique(array_column($students, 'SchoolName'));
-                foreach ($uniqueSchools as $school) {
-                    echo "<option value=\"$school\">$school</option>";
-                }
-            ?>
-        </select>
+<div class="search-container">
+    <label for="school">School:</label>
+    <select id="school" onchange="filterStudents()">
+        <option value="">All Schools</option>
+        <?php
+            // Assuming $students is an array containing your student data
+            $uniqueSchools = array_unique(array_column($students, 'SchoolName'));
+            foreach ($uniqueSchools as $school) {
+                echo "<option value=\"$school\">$school</option>";
+            }
+        ?>
+    </select>
 
-        <label for="search">Search:</label>
-        <input type="text" id="search" oninput="filterStudents()" placeholder="Search by Name or ID">
-    </div>
+    <label for="search">Search:</label>
+    <input type="text" id="search" oninput="filterStudents()" placeholder="Search by Name or ID">
+</div>
+
+<!-- Pass the PHP variable to JavaScript -->
+<script>
+    const students = <?php echo json_encode($students); ?>;
+</script>
+
+<script src="script.js"></script>
+
 
     <table id="student-table">
         <thead>

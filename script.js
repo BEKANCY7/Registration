@@ -25,5 +25,16 @@ function displayAlert(message) {
     alert(message);
 }
 
+function filterStudents() {
+    let searchInput = document.getElementById('search').value.toLowerCase();
+    let schoolFilter = document.getElementById('school').value.toLowerCase();
 
+    let filteredStudents = students.filter(student =>
+        (student.FirstName.toLowerCase().includes(searchInput) ||
+            student.LastName.toLowerCase().includes(searchInput) ||
+            student.StudentID.includes(searchInput)) &&
+        (schoolFilter === '' || student.SchoolName.toLowerCase().includes(schoolFilter))
+    );
 
+    displayStudents(filteredStudents, currentPage);
+}
