@@ -8,6 +8,27 @@
     <!-- Include font-awesome library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
+<style>
+.action-btn {
+            display: inline-block;
+            margin: 5px;
+            padding: 8px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .edit-btn {
+            background-color: #28a745;
+        }
+
+        .view-btn {
+            background-color: #17a2b8;
+        }
+    </style>
 <body>
 
     <h2>View Student Information</h2>
@@ -58,6 +79,6 @@
         echo "Student ID not provided.";
     }
     ?>
-     
+    
 </body>
 </html>
